@@ -223,7 +223,7 @@
                 <div class="slogan">La mejor TV • Megamin te ve</div>
             </div>
         </div>
-        <!-- Insignia dinámica (Se actualiza automáticamente con el script) -->
+        <!-- Insignia dinámica -->
         <div id="badge-estado" class="status-badge offline">SIN SEÑAL</div>
     </header>
 
@@ -233,10 +233,10 @@
         <section class="player-section">
             <div class="video-container">
 
-                <!-- Pantalla 1: Imagen cuando Megamin está fuera de señal -->
-                <img id="imagen-off" src="./fuera-de-señal.png" alt="Megamin fuera de señal">
+                <!-- Imagen para fuera de señal (Nombre corregido sin caracteres especiales) -->
+                <img id="imagen-off" src="./fuera-de-senal.png" alt="Megamin fuera de señal">
 
-                <!-- Pantalla 2: Reproductor de Twitch integrado con tu canal -->
+                <!-- Reproductor oficial de Twitch configurado con tu canal 'hector_ortiz22' -->
                 <iframe 
                     id="player-twitch" 
                     src="https://player.twitch.tv/?channel=hector_ortiz22&parent=heeectorrsebastianbenjamin-cmd.github.io&autoplay=true" 
@@ -283,9 +283,9 @@
     <!-- Script de Control de Transmisión -->
     <script>
         // ======================================================
-        // CONTROL DE TRANSMISIÓN DE MEGAMIN HD
-        // Cambia a 'true' cuando estés transmitiendo en vivo en Twitch.
-        // Cambia a 'false' cuando no estés transmitiendo.
+        // CONTROLES DE TRANSMISIÓN:
+        // - Para mostrar el reproductor de Twitch: cambia a 'true'
+        // - Para mostrar la pantalla de Fuera de Señal: cambia a 'false'
         // ======================================================
         const estaEnVivo = false;
 
