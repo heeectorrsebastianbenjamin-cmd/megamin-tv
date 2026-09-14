@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megamin HD - Señal en Vivo</title>
+    <style>
+        /* Estilos Generales estilo Canal de TV */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Encabezado Principal */
+        header {
+            background: linear-gradient(90deg, #1f1f1f, #8b0000);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .channel-logo {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .slogan {
+            font-size: 0.9rem;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        .live-badge {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 6px 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            animation: blink 1.5s infinite;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .live-badge::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* Layout Principal */
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Contenedor del Video en Vivo */
+        .player-section {
+            flex: 3;
+            min-width: 300px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+            border-radius: 8px;
+            border: 2px solid #333;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .stream-info {
+            margin-top: 15px;
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #8b0000;
+        }
+
+        .stream-info h2 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .stream-info p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* Barra Lateral de Programación */
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .schedule-list {
+            list-style: none;
+        }
+
+        .schedule-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .time {
+            color: #ff4d4d;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .show-title {
+            font-weight: bold;
+            margin: 2px 0;
+        }
+
+        .show-desc {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Pie de página estilo Cierre de Transmisión */
+        footer {
+            background-color: #0a0a0a;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado Institucional -->
+    <header>
+        <div class="logo-container">
+            <!-- Ruta relativa apta para GitHub Pages -->
+            <img class="channel-logo" src="./logo-megamin.png" alt="Megamin Logo">
+            <div>
+                <div class="logo-title">MEGAMIN HD</div>
+                <div class="slogan">La mejor TV • Megamin te ve</div>
+            </div>
+        </div>
+        <div class="live-badge">SEÑAL EN VIVO</div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <!-- Sección del Reproductor -->
+        <section class="player-section">
+            <div class="video-container">
+                <!-- REEMPLAZA "ID_DE_TU_VIDEO_AQUI" CON EL CÓDIGO DE TU EN VIVO NO LISTADO DE YOUTUBE -->
+                <iframe 
+                    src="https://www.youtube.com/embed/ID_DE_TU_VIDEO_AQUI?autoplay=1" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="stream-info">
+                <h2>Transmisión Oficial — Red Televisiva Megamin</h2>
+                <p>Emitiendo en directo desde los estudios principales en Chillán.</p>
+            </div>
+        </section>
+
+        <!-- Parrilla de Programación Lateral -->
+        <aside class="sidebar">
+            <h3>Parrilla Destacada</h3>
+            <ul class="schedule-list">
+                <li class="schedule-item">
+                    <span class="time">EN VIVO</span>
+                    <div class="show-title">El Clima con Benjamín</div>
+                    <div class="show-desc">Reporte meteorológico de alta precisión.</div>
+                </li>
+                <li class="schedule-item">
+                    <span class="time">A CONTINUACIÓN</span>
+                    <div class="show-title">Héctor Cuenta</div>
+                    <div class="show-desc">Cápsulas históricas resumidas.</div>
+                </li>
+                <li class="schedule-item">
+                    <span class="time">PRÓXIMAMENTE</span>
+                    <div class="show-title">CHARV Noticias</div>
+                    <div class="show-desc">Informativo escolar y local.</div>
+                </li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Red Televisiva Megamin S.A. — Dos Oriente 253, Provincia de Chillán, Chile.</p>
+    </footer>
+
+</body>
+</html>
