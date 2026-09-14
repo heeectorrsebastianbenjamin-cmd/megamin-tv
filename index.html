@@ -57,20 +57,31 @@
             font-style: italic;
         }
 
-        .live-badge {
-            background-color: #ff0000;
+        /* Insignia de Estado (En vivo / Sin señal) */
+        .status-badge {
             color: #fff;
             padding: 6px 12px;
             font-weight: bold;
             border-radius: 4px;
             font-size: 0.9rem;
-            animation: blink 1.5s infinite;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .live-badge::before {
+        /* Estado EN VIVO (Rojo parpadeante) */
+        .status-badge.live {
+            background-color: #ff0000;
+            animation: blink 1.5s infinite;
+        }
+
+        /* Estado SIN SEÑAL (Gris estático) */
+        .status-badge.offline {
+            background-color: #555555;
+            animation: none;
+        }
+
+        .status-badge::before {
             content: '';
             display: inline-block;
             width: 10px;
@@ -97,7 +108,7 @@
             flex: 1;
         }
 
-        /* Contenedor del Video en Vivo */
+        /* Contenedor del Video / Imagen de Fuera de Señal */
         .player-section {
             flex: 3;
             min-width: 300px;
@@ -114,13 +125,15 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
 
-        .video-container iframe {
+        .video-container iframe, 
+        .video-container img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: 0;
+            object-fit: cover;
         }
 
         .stream-info {
@@ -210,7 +223,8 @@
                 <div class="slogan">La mejor TV • Megamin te ve</div>
             </div>
         </div>
-        <div class="live-badge">SEÑAL EN VIVO</div>
+        <!-- Insignia dinámica (Se actualiza automáticamente) -->
+        <div id="badge-estado" class="status-badge offline">SIN SEÑAL</div>
     </header>
 
     <!-- Contenido Principal -->
@@ -218,12 +232,18 @@
         <!-- Sección del Reproductor -->
         <section class="player-section">
             <div class="video-container">
-                <!-- ID asignado a tu directo: 5ehE17eoLAE -->
+
+                <!-- Pantalla 1: Imagen cuando Megamin está fuera de señal -->
+                <img id="imagen-off" src="./fuera-de-senal.png" alt="Megamin fuera de señal">
+
+                <!-- Pantalla 2: Reproductor de Twitch (Reemplaza 'NOMBRE_DE_TU_CANAL_TWITCH' con tu usuario de Twitch) -->
                 <iframe 
-                    src="https://www.youtube.com/embed/5ehE17eoLAE?autoplay=1" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
+                    id="player-twitch" 
+                    src="https://player.twitch.tv/?channel=NOMBRE_DE_TU_CANAL_TWITCH&parent=heeectorrsebastianbenjamin-cmd.github.io&autoplay=true" 
+                    allowfullscreen 
+                    style="display: none;">
                 </iframe>
+
             </div>
 
             <div class="stream-info">
@@ -260,5 +280,30 @@
         <p>Red Televisiva Megamin S.A. — Dos Oriente 253, Provincia de Chillán, Chile.</p>
     </footer>
 
+    <!-- Script para alternar entre "SEÑAL EN VIVO" y "SIN SEÑAL" -->
+    <script>
+        // ======================================================
+        // CONTROL DE TRANSMISIÓN DE MEGAMIN HD
+        // Cambia a 'true' cuando estés transmitiendo en vivo en Twitch.
+        // Cambia a 'false' cuando la transmisión haya finalizado.
+        // ======================================================
+        const estaEnVivo = false;
+
+        const badge = document.getElementById('badge-estado');
+        const imgOff = document.getElementById('imagen-off');
+        const playerTwitch = document.getElementById('player-twitch');
+
+        if (estaEnVivo) {
+            badge.innerText = "SEÑAL EN VIVO";
+            badge.className = "status-badge live";
+            imgOff.style.display = "none";
+            playerTwitch.style.display = "block";
+        } else {
+            badge.innerText = "SIN SEÑAL";
+            badge.className = "status-badge offline";
+            imgOff.style.display = "block";
+            playerTwitch.style.display = "none";
+        }
+    </script>
 </body>
 </html>
